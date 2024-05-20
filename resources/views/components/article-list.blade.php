@@ -1,0 +1,15 @@
+<?php 
+use Illuminate\Support\Str;
+?>
+
+@props(['title', 'description', 'id'])
+
+<div class="w-full mt-[15px] ">
+    <div class="lg:w-[80%] w-[90%] m-auto mb-[10px]">
+        <article class="border-solid border-b-[2px] border-gray-100 mt-[10px]">
+            <h1 class="text-[25px] w-fit hover:drop-shadow-lg hover:text-blue-500"><a href="/artikel/{{ $id }}">{{ $title }}</a></h1>
+            <p>{{ Str::of($description)->limit(200); }}</p>
+            <a class="text-blue-700" href="/artikel/{{ $id }}">Selengkapnya&raquo;</a>
+        </article>
+    </div>
+</div>

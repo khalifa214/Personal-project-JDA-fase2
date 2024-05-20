@@ -3,10 +3,10 @@
 ?>
 
 <div class="m-[10px] p-0" x-data="{isShow: false}">
-    <button @click="isShow = !isShow" class="text-black hover:bg-gray-100 rounded-md px-[10px] py-[8px] active:bg-gray-300">
+    <button @click="isShow = !isShow" :class="{'bg-gray-200': isShow}" class="text-black hover:bg-gray-100 rounded-md px-[10px] py-[8px] active:bg-gray-300">
         Kategori
     </button>
-    <div class="w-[120px] absolute" x-show="isShow"
+    <div class="w-[120px] absolute bg-white rounded-[5px]" x-show="isShow"
             x-transition:enter="transition ease-out duration-100 transform"
             x-transition:enter-start="opacity-0 scale-95"
             x-transition:enter-end="opacity-100 scale-100"

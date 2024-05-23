@@ -12,9 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        Blade::directive('rupiah', function ($amount) {
-            return "<?php echo 'Rp ' . number_format($amount, 0, ',', '.'); ?>";
-        });
+        
     }
 
     /**
@@ -22,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Blade::directive('rupiah', function ($amount) {
+            return "<?php echo 'Rp ' . number_format($amount, 0, ',', '.'); ?>";
+        });
     }
 }

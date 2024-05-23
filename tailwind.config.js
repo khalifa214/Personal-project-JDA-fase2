@@ -15,6 +15,9 @@ export default {
       },
       boxShadow: {
         'product': '0 0 5px 1px rgba(0, 0, 0, 0.3)',
+      }, 
+      gridTemplateColumns: {
+        'dashboard': 'repeat(2, minmax(0, 1fr))',
       }
     },
   },

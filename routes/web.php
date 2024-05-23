@@ -1,54 +1,26 @@
 <?php
 
-use App\Models\Articles;
-use App\Models\Products;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+use App\Models\Article;
+use App\Models\Product;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home', ['articles' => Articles::all(), 'products' => array_slice(Products::all(), -8)]);
+Route::get("/", [HomeController::class, "index"])->name("index");
+
+Route::prefix("produk")->name("produk.")->group(function(){
+    Route::get("/{page?}", [ProductController::class, "filterData"])->name("produk");
+    Route::get("/{id}/{slug}", [ProductController::class, "detail"])->name("detailProduk");
 });
 
-Route::get('/produk/{page?}', function (?string $page=null) {
-    $products = array_reverse(Products::all());
-    $productsPerPage = 8;
-    $pages= array_chunk($products, $productsPerPage);
+Route::get("/artikel/{id?}", [ArticleController::class, "index"])->name("article");
 
-    if ($page == null) {
-        return redirect('/produk/1');
-    }
+Route::get("/admin", [HomeController::class, "dashboard"])->name("dashboard");
 
-    return view('product', ['products' => $pages[$page-1]]);
-});
-
-Route::get("/artikel/{id?}", function($id=null){
-    $result = Articles::all();
-
-    $articles = [];
-
-    // $checkUrlId = Articles::find($id); 
-
-    // if (!$checkUrlId) {
-    //     abort(404);
-    // }
-
-    if ($id != null) {
-        foreach($result as $article) {
-                if ($article["id"] == $id) {
-                    $articles = $article;
-                }
-        }
-    } else if ($id ==null ) {
-        $articles = $result;
-    } 
-
-    return view("articles", ["articles" => $articles]);
-});
-
-Route::get('/latihan/{page}', function ($page) {
-    $products = Products::all(); // Contoh array dengan 20 item
-    $productsPerPage = 2;
-    $pages= array_chunk($products, $productsPerPage);
-    $halaman = array_chunk(range(1, count($pages)), 3);
-    $parthalaman = $halaman[$page-1];
+Route::get("/latihan/{page}", function ($page) {
+    // $products = Products::paginate(15); // Contoh array dengan 20 item
+    
 
 });

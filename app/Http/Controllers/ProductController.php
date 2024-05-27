@@ -8,24 +8,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function filterData($page) {
-        $data = array_reverse(Product::all());
-        $pagestotal = 0;
+    public function filterData($page=null) {
+
         if ($page == null) {
             return redirect('/produk/1');
         }
-    
-        if ($data != null) {
-            $pages= array_chunk($data, 8);
-            $pagestotal = count($pages);
-            $rangePage = range(1, $pagestotal);
-            if (!Arr::first($rangePage, fn ($rPage) => $rPage == $page) && $page != null) {
-                abort(404);
-            }
-            $data = $pages[$page-1];
-        }
+        
+        $data = Product::filter($page, 8);
 
-        return view('product', ['products' => $data, 'pages' => $pagestotal]);
+        return view('product', compact('page'), ['products' => $data[0], 'pages' => $data[1]]);
     }
 
     public function detail($id, $slug) {

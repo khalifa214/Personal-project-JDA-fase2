@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     public function index($id=null) {
-        $result = Article::all();
+        $result =array_reverse(Article::all()->toArray());
 
         $articles = [];
 

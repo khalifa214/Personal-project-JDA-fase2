@@ -18,8 +18,8 @@
                 </ul>
             </div>
         </div>
-        <div class="p-[20px] pb-0 w-full ">
-            <div class="bg-gray-100 w-full m-auto rounded-t-[30px] p-[20px] border-x-[5px] border-t-[5px] border-green-600 min-h-[600px] md:min-h-[550px] flex justify-center md:m-0 mt-[130px]">
+        <div class="p-[20px] pb-0 w-full">
+            <div class="bg-gray-100 w-full m-auto rounded-t-[30px] p-[20px] border-x-[5px] border-t-[5px] border-green-600 min-h-[650px] md:min-h-[600px] flex justify-center md:m-0 mt-[130px]">
                 {{ $slot }}
             </div>
         </div>

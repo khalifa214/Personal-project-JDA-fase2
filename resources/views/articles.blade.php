@@ -6,7 +6,7 @@
             @endforeach
         @endif
         @if (request()->is('artikel/*'))
-            <x-article.article :id="$articles['id']" :title="$articles['title']" :description="$articles['description']"></x-article.article>
+            <x-article.article :id="$articles['id']" :title="$articles['title']" :image="$articles['image']" :description="$articles['description']"></x-article.article>
         @endif
     @endif
 </x-layout>

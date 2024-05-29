@@ -18,6 +18,9 @@ export default {
       }, 
       gridTemplateColumns: {
         'dashboard': 'repeat(2, minmax(0, 1fr))',
+      },
+      inlineAll: {
+        "inline-all": "inline-block",
       }
     },
   },

@@ -15,6 +15,13 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite('resources/css/app.css')
     <script src="https://cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+    <style>
+        .inline-all > * {
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
+    </style>
     <title>K-Store</title>
 </head>
 <body class="w-full m-0 p-0 pt-[100px]">

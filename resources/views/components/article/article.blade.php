@@ -1,5 +1,3 @@
-@props(['title', 'description', 'id', 'image'])
-
 <div class="lg:w-[80%] w-[90%] m-auto mb-[20px]">
     <article>
         <div class="md:w-[80%] w-[350px] mx-auto my-[15px] ">

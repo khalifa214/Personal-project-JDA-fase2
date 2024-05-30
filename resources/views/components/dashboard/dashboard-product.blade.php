@@ -1,5 +1,3 @@
-@props(["products", "pages", "page"])
-
 <div class="w-[90%] mx-auto p-[10px]">
     <div class="flex relative justify-center mb-[15px] z-30">
         <form action="" method="post">
@@ -13,7 +11,7 @@
     </a>
     @foreach ($products as $product )
     <div class="w-full my-[10px] rounded-[20px] shadow-product bg-white p-[10px] flex mx-auto">
-        <img src="/img/{{ $product["image"] }}" alt="" class="sm:w-[150px] sm:max-h-[150px] w-[100px] max-h-[100px] rounded-[15px]">
+        <img src="/img/product/{{ $product["image"] }}" alt="" class="sm:w-[150px] sm:max-h-[150px] w-[100px] max-h-[100px] rounded-[15px]">
         <div class="flex flex-col justify-between p-[10px] w-full">
             <h1 class="sm:text-[25px] text-[20px] text-wrap">{{ $product["title"] }}</h1>
             <div class="relative flex gap-2 justify-end z-20">

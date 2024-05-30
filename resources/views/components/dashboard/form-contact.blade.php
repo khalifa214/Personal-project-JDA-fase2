@@ -10,7 +10,7 @@
                     </h2>
                     <div class="max-w-sm mx-auto md:w-2/3">
                         <div class=" relative ">
-                            <input type="text" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Nama"/>
+                            <input type="text" name="name" value="{{ $contact["name"] }}" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Nama"/>
                         </div>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                     </h2>
                     <div class="max-w-sm mx-auto md:w-2/3">
                         <div class=" relative ">
-                            <textarea type="text" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Alamat"></textarea>
+                            <textarea type="text" name="address" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Alamat">{{ $contact["address"] }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     </h2>
                     <div class="max-w-sm mx-auto md:w-2/3">
                         <div class=" relative ">
-                            <input type="text" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Kota"/>
+                            <input type="text" name="city" value="{{ $contact["city"] }}" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Kota"/>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     </h2>
                     <div class="max-w-sm mx-auto md:w-2/3">
                         <div class=" relative ">
-                            <input type="number" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"/>
+                            <input type="text" name="telephone" value="{{ $contact["telephone"] }}" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"/>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     </h2>
                     <div class="max-w-sm mx-auto md:w-2/3">
                         <div class=" relative ">
-                            <input type="number" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"/>
+                            <input type="text" name="WA" value="{{ $contact["WA"] }}" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"/>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                         </h2>
                         <div class="max-w-sm mx-auto md:w-2/3">
                             <div class=" relative ">
-                                <input type="email" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Email"/>
+                                <input type="email" name="email" value="{{ $contact["email"] }}" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Email"/>
                             </div>
                         </div>
                     </div>

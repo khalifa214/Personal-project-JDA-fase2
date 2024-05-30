@@ -3,27 +3,83 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Contact;
 use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index() {
+       
         return view("dashboard");
     }
 
+    public function kategori() {
+        request()->validate([
+            "name" => ["required"]
+        ]);
+
+        $category = new Category();
+        $data = request()->all();
+        $category->name = $data["name"];
+        $category->save();
+
+        return redirect("/admin/produk");
+    }
+
     public function produk($page=null) {
+
+        $category = Category::all()->toArray();
 
         if ($page == null) {
             return redirect('/admin/produk/1');
         }
 
         if ($page == "create" || $page == "edit") {
-            return view("components.dashboard.form-product");
+            return view("components.dashboard.form-product", ["categories"=> $category]);
         }
 
         $data = Product::filter($page, 5);
         return view("dashboard", compact("page"), ["products" => $data[0], "pages" => $data[1]]);
+    }
+
+    public function createProduk() {
+        $product = new Product();
+
+        request()->validate([
+            "title" => ["required"],
+            "category_id"=> ["required"],
+            "image" => ["required", "file", "mimes:jpg, jpeg"],
+            "price" => ["nullable"],
+            "description" => ["required"],
+            ['image.mimes' => 'Ekstensi file harus berupa JPG atau JPEG.']
+        ]);
+
+        $data = request()->all();
+
+        if (request()->hasFile("image")) {
+            $image = request()->file("image");
+            $imageName = time(). "_" . $image->hashName();
+            $image->move("img/product", $imageName);
+            $product->image = $imageName;
+        }
+
+        if (!request()->input("price")) {
+            $product->price = "0";
+        } else {
+            $product->price = $data["price"];
+        }
+
+        $product->title = $data["title"];
+        $product->slug = Str::slug($data["title"]);
+        $product->category_id = $data["category_id"];
+        $product->description = $data["description"];
+        $product->save();
+
+        return redirect("/admin/produk")->with("success", "Produk berhasil dibuat.");
+
     }
 
     public function artikel($page=null) {
@@ -115,10 +171,46 @@ class DashboardController extends Controller
     }
 
     public function kontak($page=null) {
+
+        $data= Contact::all()->toArray();
+
         if ($page == "edit") {
-            return view("components.dashboard.form-contact");
+            return view("components.dashboard.form-contact", ["contact" => $data[0]]);
         }
 
-        return view("dashboard");
+        return view("dashboard", ["contact" => $data[0]]);
+    }
+
+    public function editKontak() {
+
+        request()->validate([
+            "name" => ["required"],
+            "address" => ["required"],
+            "city" => ["required"],
+            "telephone" => ["required"],
+            "WA" => ["required"],
+            "email" => ["nullable"],
+        ]);
+
+        $data = request()->all();
+
+        $contact = Contact::find(1);
+
+        if(request()->input("email") == null) {
+            $contact->email = "-";
+        } else {
+            $contact->email = $data["email"];
+        }
+
+        $contact->name = $data["name"];
+        $contact->address = $data["address"];
+        $contact->city = $data["city"];
+        $contact->telephone = $data["telephone"];
+        $contact->WA = $data["WA"];
+
+        $contact->save();
+        return redirect("/admin/kontak")->with("success", "Kontak berhasil di edit.");
     }
 }
+
+

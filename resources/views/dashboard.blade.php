@@ -11,6 +11,6 @@
         @endif
     @endif
     @if (request()->is("admin/kontak")) 
-    <x-dashboard.dashboard-contact></x-dashboard.dashboard-contact>
+    <x-dashboard.dashboard-contact :contact="$contact"></x-dashboard.dashboard-contact>
     @endif
 </x-dashboard.dashboard-layout>

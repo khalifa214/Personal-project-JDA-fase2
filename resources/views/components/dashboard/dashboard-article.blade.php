@@ -1,5 +1,3 @@
-@props(["articles", "pages", "page"])
-
 <div class="w-[90%] mx-auto p-[10px]">
     <div class="flex relative justify-center mb-[15px] z-30">
         <form action="" method="post">

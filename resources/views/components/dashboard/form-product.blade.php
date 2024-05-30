@@ -4,7 +4,7 @@
         <button @click="isOpen = !isOpen" class="py-2 px-4  bg-gray-400 hover:bg-gray-500 opacity-50 hover:opacity-100 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-[200px] transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
             Tambah Kategori...
          </button>
-        <form action="" x-show="isOpen">
+        <form action="/admin/produk/kategori" method="get" x-show="isOpen">
             <div class="items-center w-full p-4 text-gray-800 md:inline-flex md:space-y-0"
             >
                 <h2 class="max-w-sm mx-auto md:w-1/3 ">
@@ -12,14 +12,14 @@
                 </h2>
                 <div class="max-w-sm mx-auto md:w-2/3">
                     <div class=" relative ">
-                        <input type="text" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Nama Kategori"/>
+                        <input type="text" name="name" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Nama Kategori" required />
                     </div>
-                    <button @click="isOpen = !isOpen" class="py-2 px-4  bg-gray-400 hover:bg-gray-500 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-[100px] transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg mt-[5px]">Tambah</button>
+                    <button type="submit" class="py-2 px-4  bg-gray-400 hover:bg-gray-500 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-[100px] transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg mt-[5px]">Tambah</button>
                     
                 </div>
             </div>
         </form>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             @csrf
             <div class="space-y-6 bg-white">
                 
@@ -29,9 +29,12 @@
                     </h2>
                     <div class="max-w-sm mx-auto md:w-2/3">
                         <div class=" relative ">
-                           <select name="" id="" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" >
-                                <option value="">Kategori 1</option>
-                                <option value="">Kategori 2</option>
+                           <select name="category_id" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" required >
+                            @if ($categories != null)
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category["id"] }}">{{ $category["name"] }}</option>
+                                @endforeach
+                            @endif
                            </select>
                         </div>
                     </div>
@@ -44,7 +47,7 @@
                     </h2>
                     <div class="max-w-sm mx-auto md:w-2/3">
                         <div class=" relative ">
-                            <input type="text" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Judul"/>
+                            <input type="text" name="title" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Judul" required />
                         </div>
                     </div>
                 </div>
@@ -56,7 +59,10 @@
                     </h2>
                     <div class="max-w-sm mx-auto md:w-2/3">
                         <div class=" relative ">
-                            <input type="file" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" />
+                            <input type="file" name="image" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" required  />
+                            @error('image')
+                                <div class="text-red-500">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -68,7 +74,7 @@
                     </h2>
                     <div class="max-w-sm mx-auto md:w-2/3">
                         <div class=" relative ">
-                            <input type="number" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Harga"/>
+                            <input type="number" name="price" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Harga"/>
                         </div>
                     </div>
                 </div>
@@ -81,7 +87,7 @@
                     </h2>
                     <div class="w-full mx-auto">
                         <div class=" relative">
-                            <textarea id="content" type="text" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Judul"></textarea>
+                            <textarea id="content" name="description" type="text" class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent" placeholder="Deskripsi" required ></textarea>
                             <script>
                                 CKEDITOR.replace('content', {
                                     extraPlugins: 'font,colorbutton', // Menambahkan plugin font dan colorbutton

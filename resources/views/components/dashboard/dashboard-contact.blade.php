@@ -9,7 +9,7 @@
         </h2>
         <div class="w-full">
             <div class=" relative ">
-                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">Nama</h2>
+                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">{{ $contact["name"] }}</h2>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
         </h2>
         <div class="w-full">
             <div class=" relative ">
-                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">Alamat</h2>
+                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">{{ $contact["address"] }}</h2>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
         </h2>
         <div class="w-full">
             <div class=" relative ">
-                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">Kota</h2>
+                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">{{ $contact["city"] }}</h2>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@
         </h2>
         <div class="w-full">
             <div class=" relative ">
-                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">telepon</h2>
+                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">{{ $contact["telephone"] }}</h2>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
         </h2>
         <div class="w-full">
             <div class=" relative ">
-                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">WhatsApp</h2>
+                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">{{ $contact["WA"] }}</h2>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
         </h2>
         <div class="w-full">
             <div class=" relative ">
-                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">Email</h2>
+                <h2 type="text" class=" rounded-lg w-full py-2 px-4 bg-white text-gray-700 text-base">{{ $contact["email"] }}</h2>
             </div>
         </div>
     </div>

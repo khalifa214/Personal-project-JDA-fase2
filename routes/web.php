@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Article;
-use App\Models\Product;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
@@ -21,7 +18,9 @@ Route::get("/artikel/{id?}", [ArticleController::class, "index"])->name("article
 Route::controller(DashboardController::class)->prefix("/admin")->name("dashboard.")->group(function() {
     Route::get("/", "index")->name("dashboard");
 
+    Route::get("/produk/kategori", "kategori")->name("kategori");
     Route::get("/produk/{page?}", "produk")->name("produk");
+    Route::post("/produk/create", "createProduk")->name("produk.create");
 
     Route::prefix("/artikel")->group(function() {
         Route::get("/{page?}", "artikel")->name("artikel");
@@ -34,4 +33,5 @@ Route::controller(DashboardController::class)->prefix("/admin")->name("dashboard
     
 
     Route::get("/kontak/{page?}", "kontak")->name("kontak");
+    Route::post("/kontak/edit", "editKontak")->name("kontak.edit");
 });

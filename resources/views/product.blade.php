@@ -1,6 +1,6 @@
 <x-layout>
     @if ($products != null)
-        <x-product.category></x-product.category>
+        <x-product.category :categories="$categories"></x-product.category>
         <x-product.product-cart :products="$products">      
 
                 @if ($pages > 1)

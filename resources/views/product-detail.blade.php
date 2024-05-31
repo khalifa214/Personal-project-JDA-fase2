@@ -14,8 +14,9 @@
             </div>
         </div>
         <div class="my-[20px]">
-            <h2>Untuk Pemesanan, Silahkan Hubungi : </h2>
-            <a href="#">{{ $contact[0]["WA"] }}</a>
+            <h2 class="text-[20px] font-medium">Untuk Pemesanan, Silahkan Hubungi : </h2>
+            <a aria-label="Chat on WhatsApp" href="https://wa.me/{{ $contact[0]["WA"] }}"><img class="ml-[15px] w-[300px]" alt="Chat on WhatsApp" src="/img/WhatsAppButtonGreenLarge.png" />
+                <a />
         </div>
     </div>
 </x-layout>

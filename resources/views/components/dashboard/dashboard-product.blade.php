@@ -15,10 +15,10 @@
         <div class="flex flex-col justify-between p-[10px] w-full">
             <h1 class="sm:text-[25px] text-[20px] text-wrap">{{ $product["title"] }}</h1>
             <div class="relative flex gap-2 justify-end z-20">
-                <button id={{ $product["id"] }} class="bg-green-600 hover:bg-green-700 py-0 sm:py-1 px-2 rounded-lg text-white">
+                <a href="/admin/produk/edit/{{ $product["id"] }} "class="bg-green-600 hover:bg-green-700 py-0 sm:py-1 px-2 rounded-lg text-white">
                     <i class="fas fa-edit"></i><span class="sm:inline-block hidden ml-1">Edit</span>
-                </button>
-                <button id={{ $product["id"] }} class="bg-red-600 hover:bg-red-700 py-1 px-2 rounded-lg text-white">
+                </a>
+                <button onclick="confirmDeleteProduct({{ $product['id'] }})" class="bg-red-600 hover:bg-red-700 py-1 px-2 rounded-lg text-white">
                     <i class="fas fa-trash"></i><span class="sm:inline-block hidden ml-1">Delete</span>
                 </button>
             </div>

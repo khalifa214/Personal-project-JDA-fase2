@@ -24,7 +24,20 @@
     </style>
     <title>K-Store</title>
 </head>
-<body class="w-full m-0 p-0 pt-[100px]">
+<body class="w-full m-0 p-0 pt-[100px] h-screen">
     {{ $slot }}
 </body>
+<script>
+    function confirmDeleteArticle(id) { 
+        if (confirm('Are you sure you want to delete this article?')) {
+            window.location.href = '/admin/artikel/delete/' + id;
+        }
+    }
+
+    function confirmDeleteProduct(id) { 
+        if (confirm('Are you sure you want to delete this product?')) {
+            window.location.href = '/admin/produk/delete/' + id;
+        }
+    }
+</script>
 </html>

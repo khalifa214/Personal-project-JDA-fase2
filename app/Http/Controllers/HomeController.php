@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index() {
         $article = Article::all()->toArray();
         $product = Product::all()->toArray();
-        $category = Category::all()->toArray();
+        $category = Category::filterCategory();
         return view('home', ['articles' => array_slice($article, -3), 'products' => array_slice($product, -8), 'categories'=> $category]);
     }
 }

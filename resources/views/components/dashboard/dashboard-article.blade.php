@@ -29,16 +29,9 @@
                 <a href="/admin/artikel/edit/{{ $article["id"] }}" class="bg-green-600 hover:bg-green-700 py-0 sm:py-1 px-2 rounded-lg text-white hover:cursor-pointer">
                     <i class="fas fa-edit"></i><span class="sm:inline-block hidden ml-1">Edit</span>
                 </a>
-                <button onclick="confirmDelete({{ $article['id'] }})" class="bg-red-600 hover:bg-red-700 py-1 px-2 rounded-lg text-white"> 
+                <button onclick="confirmDeleteArticle({{ $article['id'] }})" class="bg-red-600 hover:bg-red-700 py-1 px-2 rounded-lg text-white"> 
                     <i class="fas fa-trash"></i><span class="sm:inline-block hidden ml-1">Delete</span>
                 </button>
-                <script>
-                    function confirmDelete(id) { 
-                        if (confirm('Are you sure you want to delete this article?')) {
-                            window.location.href = '/admin/artikel/delete/' + id;
-                        }
-                    }
-                </script>
             </div>
         </div>
     </div>

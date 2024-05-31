@@ -17,13 +17,13 @@ class ProductController extends Controller
         }
         
         $data = Product::filter($page, 8);
-        $category = Category::all()->toArray();
+        $category = Category::filterCategory();
 
         return view('product', compact('page'), ['products' => $data[0], 'pages' => $data[1], 'categories'=> $category]);
     }
 
     public function detail($id, $slug) {
-        $data = Product::all();
+        $data = Product::all()->toArray();
         $filterData = Arr::first($data, fn ($product) => $product["id"] == $id && $product["slug"] == $slug);
 
         $contact = Contact::all()->toArray();

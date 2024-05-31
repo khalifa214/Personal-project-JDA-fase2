@@ -16,6 +16,8 @@ class DashboardController extends Controller
         return view("dashboard");
     }
 
+
+    //fungsi untuk membuat kategori 
     public function kategori() {
         request()->validate([
             "name" => ["required"]
@@ -29,6 +31,8 @@ class DashboardController extends Controller
         return redirect("/admin/produk");
     }
 
+
+    //fungsi untuk CRUD produk
     public function produk($page=null) {
 
         $category = Category::all()->toArray();
@@ -82,6 +86,60 @@ class DashboardController extends Controller
 
     }
 
+    public function editProduk($id) {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return redirect("/admin/produk");
+        }
+        return redirect("/admin/produk/edit")->with("product", $product);
+    }
+
+    public function editFormProduk() {
+        $data = request()->all();
+
+        request()->validate([
+            "title" => ["required"],
+            "category_id"=> ["required"],
+            "image" => ["nullable", "file", "mimes:jpg, jpeg"],
+            "price" => ["nullable"],
+            "description" => ["required"],
+            ['image.mimes' => 'Ekstensi file harus berupa JPG atau JPEG.']
+        ]);
+
+        $product = Product::find($data["id"]);
+
+        if (request()->hasFile("image")) {
+            $image = request()->file("image");
+            $imageName = time(). "_" . $image->hashName();
+            $image->move("img/product", $imageName);
+            $product->image = $imageName;
+        } else {
+            $product->image = $data["old-image"];
+        }
+
+        if (!request()->input("price")) {
+            $product->price = "0";
+        } else {
+            $product->price = $data["price"];
+        }
+
+        $product->title = $data["title"];
+        $product->slug = Str::slug($data["title"]);
+        $product->category_id = $data["category_id"];
+        $product->description = $data["description"];
+        $product->save();
+
+        return redirect("/admin/produk")->with("success", "Produk berhasil di edit.");
+    }
+
+    public function deleteProduk($id) {
+        Product::destroy($id);
+
+        return redirect("/admin/produk");
+    }
+
+    //fungsi untuk CRUD artikel
     public function artikel($page=null) {
         if ($page == null) {
             return redirect('/admin/artikel/1');
@@ -124,7 +182,7 @@ class DashboardController extends Controller
         return redirect("/admin/artikel")->with("success", "Artikel berhasil dibuat.");
     }
 
-    public function edit($id) {
+    public function editArtikel($id) {
         $article = Article::find($id);
 
 
@@ -135,7 +193,7 @@ class DashboardController extends Controller
         return redirect("/admin/artikel/edit")->with("article", $article);
     }
 
-    public function editArtikel() {
+    public function editFormArtikel() {
       
         request()->validate([
             "title" => ["required"],
@@ -170,6 +228,8 @@ class DashboardController extends Controller
         return redirect("/admin/artikel");
     }
 
+
+    //fungsi untuk edit kontak
     public function kontak($page=null) {
 
         $data= Contact::all()->toArray();
@@ -181,6 +241,7 @@ class DashboardController extends Controller
         return view("dashboard", ["contact" => $data[0]]);
     }
 
+    //fungsi untuk meng edit informasi kontak
     public function editKontak() {
 
         request()->validate([

@@ -39,5 +39,11 @@
             window.location.href = '/admin/produk/delete/' + id;
         }
     }
+
+    function logoutButton() { 
+        if (confirm('Are you sure you want to Logout?')) {
+            window.location.href = '/logout';
+        }
+    }
 </script>
 </html>

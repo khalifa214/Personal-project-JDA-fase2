@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Middleware\Authenticate;
 
 Route::get("/", [HomeController::class, "index"])->name("index");
 
@@ -19,7 +20,7 @@ Route::controller(ProductController::class)->prefix("produk")->name("product.")-
 
 Route::get("/artikel/{id?}", [ArticleController::class, "index"])->name("article");
 
-Route::controller(DashboardController::class)->prefix("/admin")->name("dashboard.")->group(function() {
+Route::controller(DashboardController::class)->middleware(Authenticate::class)->prefix("/admin")->name("dashboard.")->group(function() {
     Route::get("/", "index")->name("index");
 
     Route::prefix("/produk")->group(function() {
@@ -45,9 +46,9 @@ Route::controller(DashboardController::class)->prefix("/admin")->name("dashboard
     Route::post("/kontak/edit", "editKontak")->name("contact.edit");
 });
 
-Route::controller(AuthController::class)->prefix("login")->name("auth.")->group(function() {
-    Route::get("/", "loginPage")->name("loginPage");
-    Route::post("/", "login")->name("login");
+Route::controller(AuthController::class)->name("auth.")->group(function() {
+    Route::get("/login", "loginPage")->name("loginPage");
+    Route::post("/login", "login")->name("login");
     Route::get("/logout", "logout")->name("logout");
 });
 

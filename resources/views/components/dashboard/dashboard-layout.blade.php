@@ -14,6 +14,9 @@
                         <li>
                             <a href="/admin/kontak" class="hover:text-green-500 active:text-white"><i class="fas fa-address-book mr-[15px]"></i>Kontak</a>
                         </li>
+                        <li>
+                            <button onclick="logoutButton()" class="hover:text-green-500 active:text-white bg-red-500 px-[10px] md:px-[10px] rounded-2xl"><i class="fas fa-sign-out-alt md:mr-[5px]"></i><span class="md:inline hidden">Logout</span></button>
+                        </li>
                     </li>
                 </ul>
             </div>
